@@ -1,0 +1,150 @@
+$DAM: #009ab7;
+$DAW: rgba(0, 153, 183, 0.371);
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+
+.chart {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(100, 1fr);
+  grid-column-gap: 5px;
+  height: 100%;
+  width: 100%;
+  padding: 5px 10px;
+  justify-content: center;
+
+  grid-area: grafico;
+}
+
+[class*="bar"] {
+  border-radius: 5px 5px 0 0;
+  grid-row-start: 1;
+  grid-row-end: 101;
+}
+
+
+$totalRows: 100;
+
+@mixin chartValue($data) {
+  $result: $totalRows - $data;
+  grid-row-start: $result;
+}
+
+@for $i from 1 through $totalRows {
+  .bar-#{$i} {
+    $valor: (
+      $i
+    );
+  @include chartValue($i);
+}
+}
+
+[class*="bar"]:nth-child(odd) {
+  background-color: $DAM;
+}
+
+[class*="bar"]:nth-child(even) {
+  background-color: $DAW;
+}
+
+//Izenburua eta efektua
+h1{
+  color: $DAM;
+  font-size: 4em;
+  font-style: Georgia;
+}
+
+.bounce-top {
+	animation: bounce-top 3s both;
+}
+@keyframes bounce-top{0%{transform:translateY(-45px);animation-timing-function:ease-in;opacity:1}24%{opacity:1}40%{transform:translateY(-24px);animation-timing-function:ease-in}65%{transform:translateY(-12px);animation-timing-function:ease-in}82%{transform:translateY(-6px);animation-timing-function:ease-in}93%{transform:translateY(-4px);animation-timing-function:ease-in}25%,55%,75%,87%{transform:translateY(0);animation-timing-function:ease-out}100%{transform:translateY(0);animation-timing-function:ease-out;opacity:1}}
+
+//Erlojua
+.erlojua {
+  position: relative;
+  width: 15.625em;
+  height: 15.625em;
+  border-radius: 50%;
+  border: 0.4em solid $DAM;
+  background-color: white;
+}
+
+.marra {
+  background-color: $DAM;
+  height: 1em;
+  width: 0.5em;
+  position: absolute;
+}
+
+.o12ak {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.o6ak {
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+
+.o3rak {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.o9ak {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.borobila {
+  position: absolute;
+  width: 0.5em;
+  height: 0.5em;
+  background-color: $DAM;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+}
+
+.minutuak {
+  height: 6em;
+  width: 0.2em;
+  top: 50%;
+  left: 50%;
+  background: linear-gradient(transparent 1%, $DAW);
+  transform-origin: 50% 0%;
+  animation: biratu 15s linear infinite;
+}
+
+.orduak {
+  height: 4em;
+  width: 0.2em;
+  top: 50%;
+  left: 50%;
+  background: linear-gradient(transparent 1%, $DAM);
+  transform-origin: 50% 0%;
+  animation: biratu 60s linear infinite;
+}
+
+@keyframes biratu {
+from { transform: translateX(-50%) rotate(0deg); }
+to { transform: translateX(-50%) rotate(360deg); }
+}
