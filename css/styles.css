@@ -551,7 +551,7 @@ h1 {
   left: 50%;
   background: linear-gradient(transparent 1%, #009ab7);
   transform-origin: 50% 0%;
-  animation: biratu 60s linear infinite;
+  animation: biratu 30s linear infinite;
 }
 
 @keyframes biratu {
